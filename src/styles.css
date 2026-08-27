@@ -277,3 +277,71 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ------------------------------------------------------------------
+ * CSS-only entrance animations (no JS needed → paints immediately)
+ * ------------------------------------------------------------------ */
+
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@utility enter-fade {
+  animation: enter-fade 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--enter-delay, 0s)
+    both;
+}
+
+@keyframes enter-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-14px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@utility enter-left {
+  animation: enter-left 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--enter-delay, 0s)
+    both;
+}
+
+@keyframes enter-mask {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.5em, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@utility enter-mask {
+  animation: enter-mask 1.05s cubic-bezier(0.22, 1, 0.36, 1)
+    var(--enter-delay, 0s) both;
+}
+
+@keyframes enter-scale {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0) scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@utility enter-scale {
+  animation: enter-scale 1.2s cubic-bezier(0.22, 1, 0.36, 1)
+    var(--enter-delay, 0s) both;
+}
