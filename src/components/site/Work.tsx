@@ -167,11 +167,14 @@ export function Work() {
             {projects.map((p, i) => (
               <div
                 key={p.title}
-                className="shrink-0"
+                ref={(el) => {
+                  cardsRef.current[i] = el;
+                }}
+                className="shrink-0 will-change-transform"
                 style={{ width: `${100 / projects.length}%` }}
-                aria-hidden={i !== active}
               >
                 <div className="shell">
+
                   <article className="surface surface-hover group grid overflow-hidden lg:grid-cols-2">
                     <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:h-[46vh] lg:min-h-[340px]">
                       <img
