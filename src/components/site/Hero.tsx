@@ -94,17 +94,23 @@ export function Hero() {
           </span>
         </motion.h1>
 
-        {/* Pill CTA */}
+        {/* Pill CTAs */}
         <motion.div
           variants={fade}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6"
+          className="mt-6 flex flex-wrap items-center gap-3"
         >
           <a
             href="#contact"
             className="display inline-flex items-center rounded-full bg-foreground px-8 py-3 text-lg text-background transition-opacity duration-300 hover:opacity-85"
           >
             You need a developer ?
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center rounded-full border border-foreground px-7 py-3 text-[11px] uppercase tracking-[0.18em] text-foreground transition-all duration-300 hover:bg-foreground hover:text-background"
+          >
+            Resume
           </a>
         </motion.div>
       </motion.div>
