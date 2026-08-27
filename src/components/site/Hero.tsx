@@ -138,7 +138,7 @@ export function Hero() {
             <span className="relative z-10">You need a developer ?</span>
             <span
               aria-hidden
-              className="absolute inset-y-0 -left-1/3 z-0 w-1/3 skew-x-[-20deg] bg-background/25 shimmer-sweep"
+              className="absolute inset-y-0 -left-1/3 z-0 w-1/3 skew-x-[-20deg] bg-gradient-to-r from-transparent via-background/20 to-transparent blur-md shimmer-sweep"
             />
           </a>
           <a
