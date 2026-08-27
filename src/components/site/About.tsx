@@ -22,8 +22,8 @@ const principles = [
 
 export function About() {
   return (
-    <section id="about" className="relative py-28 lg:py-40">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="about" className="relative section-y">
+      <div className="shell">
         <div className="grid gap-14 lg:grid-cols-[1fr_0.85fr] lg:items-center">
           <Reveal>
             <p className="eyebrow">About</p>
