@@ -20,9 +20,12 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-background"
     >
-      {/* Portrait — right half, layered above the wordmark */}
+      {/* Portrait — right half, layered above the wordmark.
+          `isolate` on the section scopes all z-indexes here, so no
+          transformed sibling (framer-motion creates stacking contexts)
+          can ever paint the wordmark line over the portrait. */}
       <div className="pointer-events-none absolute inset-y-0 right-0 z-30 w-[78%] sm:w-[62%] lg:w-[52%]">
         <img
           src={heroImage}
