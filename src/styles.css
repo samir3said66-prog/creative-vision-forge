@@ -166,3 +166,114 @@
 @utility hairline {
   border-top: 1px solid var(--color-border);
 }
+
+/* ------------------------------------------------------------------
+ * Layout primitives — every section shares the same rhythm & gutters
+ * ------------------------------------------------------------------ */
+
+@utility shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem; /* max-w-7xl */
+  padding-inline: 1.5rem;
+
+  @media (width >= 64rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Same shell, but offset for the fixed left rail on the hero */
+@utility shell-rail {
+  @media (width >= 48rem) {
+    padding-left: 6rem;
+  }
+  @media (width >= 64rem) {
+    padding-left: 7rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 7rem;
+
+  @media (width >= 64rem) {
+    padding-block: 10rem;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Hero atmosphere + motion
+ * ------------------------------------------------------------------ */
+
+@utility hero-aura {
+  background-image:
+    radial-gradient(
+      45% 55% at 68% 45%,
+      oklch(1 0 0 / 9%) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      35% 40% at 12% 15%,
+      oklch(0.9 0.03 85 / 7%) 0%,
+      transparent 72%
+    );
+}
+
+@utility hero-grid {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 3.5%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 3.5%) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(70% 70% at 50% 40%, #000 0%, transparent 100%);
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@utility hero-float {
+  animation: hero-float 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes rule-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@utility rule-grow {
+  transform-origin: left center;
+  animation: rule-grow 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+@utility shimmer-sweep {
+  animation: shimmer-sweep 2.8s cubic-bezier(0.22, 1, 0.36, 1) 1.2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
