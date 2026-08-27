@@ -22,6 +22,18 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [
+      {
+        rel: "preload",
+        as: "image",
+        href: "/images/portrait-cutout.webp",
+        imageSrcSet:
+          "/images/portrait-cutout-800.webp 512w, /images/portrait-cutout.webp 1024w",
+        imageSizes: "(min-width: 1024px) 52vw, 72vw",
+        fetchpriority: "high",
+        type: "image/webp",
+      },
+    ],
   }),
   component: Index,
 });
