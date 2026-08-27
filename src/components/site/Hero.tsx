@@ -129,11 +129,16 @@ export function Hero() {
       </a>
 
       {/* Wordmark — sits behind the portrait so the cutout isn't clipped */}
-      <div className="absolute inset-x-0 bottom-0 z-0 flex items-center gap-6 px-6 pb-6 md:pl-24 lg:px-10 lg:pl-28">
-        <span className="display text-[clamp(2rem,7vw,4.5rem)] uppercase leading-none tracking-[0.02em] text-foreground">
-          Mostafa
+      <div className="absolute inset-x-0 bottom-0 z-0 flex flex-col gap-1 px-6 pb-6 md:pl-24 lg:px-10 lg:pl-28">
+        <div className="flex items-center gap-6">
+          <span className="display text-[clamp(2rem,7vw,4.5rem)] uppercase leading-none tracking-[0.02em] text-foreground">
+            Mostafa Samir
+          </span>
+          <span className="h-px flex-1 bg-border-strong" />
+        </div>
+        <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+          Full Stack Engineer
         </span>
-        <span className="h-px flex-1 bg-border-strong" />
       </div>
     </section>
   );
