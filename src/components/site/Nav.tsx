@@ -50,11 +50,11 @@ export function Nav() {
             : "border-border/50 bg-background/40 backdrop-blur-md"
         }`}
       >
-        <a href="#top" className="group flex items-baseline gap-3">
+        <a href="#top" className="group flex flex-col items-start gap-0.5 leading-none">
           <span className="display text-lg tracking-tight text-foreground transition-opacity duration-300 group-hover:opacity-70">
             Mostafa Samir
           </span>
-          <span className="hidden text-[10px] uppercase tracking-[0.24em] text-muted-foreground sm:inline">
+          <span className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
             Booking Systems
           </span>
         </a>
