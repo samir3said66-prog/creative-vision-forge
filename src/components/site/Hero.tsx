@@ -133,7 +133,7 @@ export function Hero() {
         >
           <a
             href="#contact"
-            className="display group relative inline-flex items-center overflow-hidden rounded-full bg-foreground px-8 py-3 text-lg text-background transition-transform duration-300 hover:-translate-y-0.5"
+            className="display group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-2xl bg-foreground px-7 text-base text-background transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
           >
             <span className="relative z-10">You need a developer ?</span>
             <span
@@ -143,9 +143,13 @@ export function Hero() {
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center rounded-full border border-foreground px-7 py-3 text-[11px] uppercase tracking-[0.18em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-foreground hover:text-background"
+            className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-2xl border border-foreground px-7 text-[11px] uppercase tracking-[0.18em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-foreground hover:text-background hover:shadow-lg"
           >
-            Resume
+            <span className="relative z-10">Resume</span>
+            <span
+              aria-hidden
+              className="absolute inset-y-0 -left-1/3 z-0 w-1/3 skew-x-[-20deg] bg-gradient-to-r from-transparent via-background/20 to-transparent blur-md shimmer-sweep"
+            />
           </a>
         </motion.div>
       </motion.div>
