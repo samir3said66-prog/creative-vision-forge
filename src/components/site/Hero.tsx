@@ -56,16 +56,6 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Resume pill — top left */}
-      <motion.a
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        href="#contact"
-        className="absolute left-6 top-[6.5rem] z-20 rounded-full bg-foreground px-7 py-2.5 text-[11px] uppercase tracking-[0.18em] text-background transition-opacity duration-300 hover:opacity-85 md:left-24 md:top-[7.5rem]"
-      >
-        Resume
-      </motion.a>
 
       <motion.div
         initial="hidden"
