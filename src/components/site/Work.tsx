@@ -50,14 +50,15 @@ export function Work() {
       raf = 0;
       const section = sectionRef.current;
       const track = trackRef.current;
-      if (!section || !track) return;
+      const viewport = track?.parentElement;
+      if (!section || !track || !viewport) return;
 
       const rect = section.getBoundingClientRect();
       const scrollable = section.offsetHeight - window.innerHeight;
       if (scrollable <= 0) return;
 
       const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
-      const maxX = track.scrollWidth - track.clientWidth;
+      const maxX = track.scrollWidth - viewport.clientWidth;
       track.style.transform = `translate3d(${-progress * maxX}px, 0, 0)`;
 
       const index = Math.min(
