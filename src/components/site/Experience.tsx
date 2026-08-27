@@ -29,8 +29,8 @@ const roles = [
 
 export function Experience() {
   return (
-    <section id="experience" className="relative py-28 lg:py-40">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="experience" className="relative section-y">
+      <div className="shell">
         <Reveal>
           <p className="eyebrow">Professional Experience</p>
           <h2 className="display mt-5 max-w-2xl text-[clamp(2.25rem,5vw,4.25rem)]">

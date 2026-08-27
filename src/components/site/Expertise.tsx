@@ -63,9 +63,9 @@ const metrics = [
 
 export function Expertise() {
   return (
-    <section id="expertise" className="relative py-28 lg:py-40">
+    <section id="expertise" className="relative section-y">
       <div className="glow-radial pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+      <div className="relative shell">
         <Reveal>
           <p className="eyebrow">Technical Expertise</p>
           <h2 className="display mt-5 max-w-2xl text-[clamp(2.25rem,5vw,4.25rem)]">

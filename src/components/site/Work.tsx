@@ -37,8 +37,8 @@ const projects = [
 
 export function Work() {
   return (
-    <section id="work" className="relative py-28 lg:py-40">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="work" className="relative section-y">
+      <div className="shell">
         <Reveal>
           <p className="eyebrow">Selected Work</p>
           <h2 className="display mt-5 max-w-2xl text-[clamp(2.25rem,5vw,4.25rem)]">
