@@ -39,50 +39,57 @@ const projects = [
 export function Work() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
 
-  // Drive horizontal translation from vertical page scroll (rAF-throttled).
+  // Continuous rAF loop: eased (lerped) horizontal motion driven by page scroll.
   useEffect(() => {
     let raf = 0;
+    let current = 0; // smoothed progress
+    let target = 0;
 
-    const update = () => {
-      raf = 0;
+    const readTarget = () => {
       const section = sectionRef.current;
+      if (!section) return 0;
+      const scrollable = section.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return 0;
+      const top = section.getBoundingClientRect().top;
+      return Math.min(1, Math.max(0, -top / scrollable));
+    };
+
+    const tick = () => {
+      raf = requestAnimationFrame(tick);
       const track = trackRef.current;
       const viewport = track?.parentElement;
-      if (!section || !track || !viewport) return;
+      if (!track || !viewport) return;
 
-      const rect = section.getBoundingClientRect();
-      const scrollable = section.offsetHeight - window.innerHeight;
-      if (scrollable <= 0) return;
+      target = readTarget();
+      current += (target - current) * 0.12; // easing
+      if (Math.abs(target - current) < 0.0002) current = target;
 
-      const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
       const maxX = track.scrollWidth - viewport.clientWidth;
-      track.style.transform = `translate3d(${-progress * maxX}px, 0, 0)`;
+      track.style.transform = `translate3d(${-current * maxX}px, 0, 0)`;
 
-      const index = Math.min(
-        projects.length - 1,
-        Math.round(progress * (projects.length - 1)),
-      );
+      // Per-card depth animation (scale / opacity / parallax) for a rich transition.
+      const pos = current * (projects.length - 1);
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        const d = Math.min(1, Math.abs(pos - i));
+        card.style.opacity = String(1 - d * 0.65);
+        card.style.transform = `scale(${1 - d * 0.12}) translate3d(${(pos - i) * 4}%, 0, 0)`;
+        card.style.filter = d > 0.02 ? `blur(${d * 4}px)` : "none";
+      });
+
+      const index = Math.min(projects.length - 1, Math.round(pos));
       if (index !== activeRef.current) {
         activeRef.current = index;
         setActive(index);
       }
     };
 
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   // Jump to a project by scrolling the page to its progress point.
@@ -97,6 +104,7 @@ export function Work() {
       (clamped / (projects.length - 1)) * scrollable;
     window.scrollTo({ top, behavior: "smooth" });
   };
+
 
   return (
     <section
@@ -159,11 +167,14 @@ export function Work() {
             {projects.map((p, i) => (
               <div
                 key={p.title}
-                className="shrink-0"
+                ref={(el) => {
+                  cardsRef.current[i] = el;
+                }}
+                className="shrink-0 will-change-transform"
                 style={{ width: `${100 / projects.length}%` }}
-                aria-hidden={i !== active}
               >
                 <div className="shell">
+
                   <article className="surface surface-hover group grid overflow-hidden lg:grid-cols-2">
                     <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:h-[46vh] lg:min-h-[340px]">
                       <img
